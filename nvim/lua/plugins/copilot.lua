@@ -30,10 +30,11 @@ return {
         },
         opts = {
             window = {
-                layout = "vertical", -- Opens chat in a vertical split
-                relative = "editor", -- Relative to the editor
-                width = 0.4, -- 40% of editor width
-                border = "single", -- Optional: border style
+                layout = "float",
+                relative = "editor",
+                width = 0.8,
+                height = 0.8,
+                border = "single",
             }
         },
     },
