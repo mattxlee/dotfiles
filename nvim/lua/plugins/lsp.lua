@@ -14,4 +14,68 @@ return {
             indent = { enable = false },
         }
     },
+    {
+        "mason-org/mason.nvim",
+        config = true,
+    },
+    { "mason-org/mason-lspconfig.nvim", config = true },
+    {
+        "saghen/blink.cmp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        build = "cargo build --release",
+        version = "1.*",
+        opts = {
+            keymap = {
+                preset = "none",
+                ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+                ["<C-e>"] = { "hide" },
+                ["<C-y>"] = { "select_and_accept" },
+
+                ["<Up>"] = { "select_prev", "fallback" },
+                ["<Down>"] = { "select_next", "fallback" },
+                ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+                ["<C-n>"] = { "select_next", "fallback_to_mappings" },
+
+                ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+                ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+
+                ["<C-f>"] = { "snippet_forward", "fallback" },
+                ["<C-b>"] = { "snippet_backward", "fallback" },
+
+                ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+            },
+            completion = {
+                documentation = {
+                    auto_show = true,
+                },
+            },
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" },
+            },
+            signature = {
+                enabled = true,
+                window = {
+                    show_documentation = true,
+                },
+            },
+            fuzzy = { implementation = "prefer_rust_with_warning" },
+        },
+        opts_extend = { "sources.default" },
+    },
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = { "saghen/blink.cmp" },
+        opts = {
+            servers = { -- You can add your own setup here
+                lua_ls = {}
+            }
+        },
+        config = function(_, opts)
+            local lspconfig = require("lspconfig")
+            for server, config in pairs(opts.servers) do
+                config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+                lspconfig[server].setup(config)
+            end
+        end,
+    }
 }

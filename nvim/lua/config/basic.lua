@@ -24,6 +24,9 @@ vim.o.signcolumn = "yes"
 
 vim.o.linebreak = true
 
+-- Set windows border to "rounded"
+vim.o.winborder = "rounded"
+
 -- Do not jump to next match on press "*"
 vim.keymap.set("n", "*", ":keepjumps normal! mi*`i<CR>")
 
@@ -49,3 +52,11 @@ vim.keymap.set("n", "<Leader>q", ":%bd<CR>")
 
 -- Hide the highlights
 vim.keymap.set("n", "<Leader>n", ":noh<CR>")
+
+vim.cmd[[
+    set maxmempattern=2000000
+    filetype indent on
+    autocmd InsertEnter * set nocursorline
+    autocmd InsertLeave * set cursorline
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+]]

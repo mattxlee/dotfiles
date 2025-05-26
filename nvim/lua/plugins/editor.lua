@@ -38,13 +38,4 @@ return {
             end, { desc = "Previous todo comment" })
         end
     },
-    {
-        "stevearc/conform.nvim",
-        opts = {},
-        config = function()
-            vim.keymap.set("n", "<Leader>i", function()
-                require("conform").format()
-            end)
-        end
-    },
 }
