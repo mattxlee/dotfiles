@@ -1,0 +1,1 @@
+vim.keymap.set("n", "<Leader>cc", ":CodeCompanionAction<CR>")
