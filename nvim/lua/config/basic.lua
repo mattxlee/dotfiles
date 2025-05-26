@@ -14,6 +14,7 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.smartindent = false
 vim.o.autoindent = true
+vim.o.linebreak = true
 
 -- Show cursor line
 vim.o.cursorline = true
@@ -22,7 +23,8 @@ vim.o.cursorline = true
 vim.o.number = true
 vim.o.signcolumn = "yes"
 
-vim.o.linebreak = true
+-- No fucking mouse
+vim.o.mouse = ""
 
 -- Set windows border to "rounded"
 vim.o.winborder = "rounded"
@@ -52,6 +54,9 @@ vim.keymap.set("n", "<Leader>q", ":%bd<CR>")
 
 -- Hide the highlights
 vim.keymap.set("n", "<Leader>n", ":noh<CR>")
+
+-- Copy to system clipboard
+vim.keymap.set("n", "<Leader>y", '"*y')
 
 vim.cmd[[
     set maxmempattern=2000000

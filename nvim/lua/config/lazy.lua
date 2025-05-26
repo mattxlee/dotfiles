@@ -23,11 +23,14 @@ require("lazy").setup({
     spec = {
         { import = "plugins" },
     },
-    install = { colorscheme = { "habamax" } },
+    install = { colorscheme = { "tokyonight" } },
     checker = { enabled = false },
     change_detection = {
         enabled = true,
         notify = false,
     },
+    ui = {
+        size = { width = 1.0, height = 1.0 },
+    },
 })
-vim.keymap.set("n", "<Leader>a", ":Lazy<CR>")
+vim.keymap.set("n", "<Leader>p", ":Lazy<CR>")

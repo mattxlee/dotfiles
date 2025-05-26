@@ -21,7 +21,7 @@ return {
                     vim.schedule(function() gs.prev_hunk() end)
                     return "<Ignore>"
                 end, {expr=true})
-                map("n", "<leader>rr", gs.reset_hunk)
+                map("n", "<Leader>rr", gs.reset_hunk)
             end
         }
     },
