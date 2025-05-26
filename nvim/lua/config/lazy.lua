@@ -33,4 +33,4 @@ require("lazy").setup({
         size = { width = 1.0, height = 1.0 },
     },
 })
-vim.keymap.set("n", "<Leader>p", ":Lazy<CR>")
+vim.keymap.set("n", "<Leader>a", ":Lazy<CR>")
