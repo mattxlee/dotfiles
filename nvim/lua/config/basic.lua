@@ -25,6 +25,10 @@ vim.o.signcolumn = "yes"
 
 -- No fucking mouse
 vim.o.mouse = ""
+vim.keymap.set("", "<up>", "<nop>", { noremap = true })
+vim.keymap.set("", "<down>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<up>", "<nop>", { noremap = true })
+vim.keymap.set("i", "<down>", "<nop>", { noremap = true })
 
 -- Set windows border to "rounded"
 vim.o.winborder = "rounded"
@@ -58,7 +62,7 @@ vim.keymap.set("n", "<Leader>n", ":noh<CR>")
 -- Copy to system clipboard
 vim.keymap.set("n", "<Leader>y", '"*y')
 
-vim.cmd[[
+vim.cmd [[
     set maxmempattern=2000000
     filetype indent on
     autocmd InsertEnter * set nocursorline
