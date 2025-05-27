@@ -36,10 +36,6 @@ vim.o.winborder = "rounded"
 -- Do not jump to next match on press "*"
 vim.keymap.set("n", "*", ":keepjumps normal! mi*`i<CR>")
 
--- Splitting current window
-vim.keymap.set("n", "<Leader>v", ":vsp<CR>")
-vim.keymap.set("n", "<Leader>s", ":sp<CR>")
-
 -- Jumping between windows
 vim.keymap.set("n", "<Leader>w", "<c-w>w")
 vim.keymap.set("n", "<Leader>W", "<c-w>W")
