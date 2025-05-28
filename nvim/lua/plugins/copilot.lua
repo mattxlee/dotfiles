@@ -30,11 +30,16 @@ return {
         },
         opts = {
             window = {
-                layout = "float",
-                relative = "editor",
-                width = 0.8,
-                height = 0.8,
-                border = "single",
+                layout = "replace",
+            },
+            mappings = {
+                submit_prompt = {
+                    normal = '<CR>',
+                    insert = '<C-j>'
+                },
+                show_diff = {
+                    full_diff = true
+                }
             }
         },
     },
