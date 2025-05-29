@@ -45,10 +45,13 @@ return {
                 ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
             },
             completion = {
+                menu = {
+                    auto_show = true,
+                },
                 documentation = {
                     auto_show = true,
                 },
-                ghost_text = { enabled = true },
+                ghost_text = { enabled = false },
             },
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
@@ -56,7 +59,7 @@ return {
             signature = {
                 enabled = true,
                 window = {
-                    show_documentation = true,
+                    show_documentation = false,
                 },
             },
             fuzzy = { implementation = "prefer_rust_with_warning" },
