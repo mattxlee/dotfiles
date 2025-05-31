@@ -23,6 +23,7 @@ return {
         "saghen/blink.cmp",
         build = "cargo build --release",
         version = "1.*",
+        dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*' },
         opts = {
             keymap = {
                 preset = "none",
@@ -38,6 +39,9 @@ return {
                 ["<C-u>"] = { "scroll_documentation_up", "fallback" },
                 ["<C-d>"] = { "scroll_documentation_down", "fallback" },
 
+                ["<C-f>"] = { "snippet_forward", "fallback" },
+                ["<C-b>"] = { "snippet_backward", "fallback" },
+
                 ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
             },
             completion = {
@@ -49,8 +53,9 @@ return {
                 },
                 ghost_text = { enabled = false },
             },
+            snippets = { preset = 'luasnip' },
             sources = {
-                default = { "lsp", "path", "buffer" },
+                default = { "lsp", "path", "snippets", "buffer" },
             },
             signature = {
                 enabled = true,
