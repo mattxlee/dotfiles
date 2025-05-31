@@ -21,7 +21,6 @@ return {
     { "mason-org/mason-lspconfig.nvim", config = true },
     {
         "saghen/blink.cmp",
-        dependencies = { "rafamadriz/friendly-snippets" },
         build = "cargo build --release",
         version = "1.*",
         opts = {
@@ -39,9 +38,6 @@ return {
                 ["<C-u>"] = { "scroll_documentation_up", "fallback" },
                 ["<C-d>"] = { "scroll_documentation_down", "fallback" },
 
-                ["<C-f>"] = { "snippet_forward", "fallback" },
-                ["<C-b>"] = { "snippet_backward", "fallback" },
-
                 ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
             },
             completion = {
@@ -54,7 +50,7 @@ return {
                 ghost_text = { enabled = false },
             },
             sources = {
-                default = { "lsp", "path", "snippets", "buffer" },
+                default = { "lsp", "path", "buffer" },
             },
             signature = {
                 enabled = true,
