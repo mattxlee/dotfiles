@@ -57,7 +57,7 @@ vim.keymap.set("n", "<Leader>q", ":%bd<CR>")
 vim.keymap.set("n", "<Leader>n", ":noh<CR>")
 
 -- Copy to system clipboard
-vim.keymap.set("n", "<Leader>y", '"*y')
+vim.keymap.set({ "n", "v" }, "<Leader>y", '"*y')
 
 vim.cmd [[
     set maxmempattern=2000000
