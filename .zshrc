@@ -101,9 +101,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 setopt auto_cd
-cdpath=($HOME)
+cdpath=($HOME $HOME/Workspace/)
 #
 source $HOME/.profile
 export GPG_TTY=$(tty)
 
-TZ='Asia/Shanghai'; export TZ
+TZ='Asia/Tokyo'; export TZ
+# pnpm
+export PNPM_HOME="/Users/matthew/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
