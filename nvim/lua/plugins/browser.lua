@@ -10,6 +10,14 @@ return {
         lazy = false,
         opts = {
             close_if_last_window = true,
+            filesystem = {
+                window = {
+                    mappings = {
+                        ["]c"] = "next_git_modified",
+                        ["[c"] = "prev_git_modified",
+                    },
+                },
+            },
         },
     },
     {
