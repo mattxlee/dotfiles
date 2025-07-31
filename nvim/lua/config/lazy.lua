@@ -30,7 +30,9 @@ require("lazy").setup({
         notify = false,
     },
     ui = {
-        size = { width = 1.0, height = 1.0 },
+        size = { width = 0.9, height = 0.9 },
+        border = 'rounded',
+        backdrop = 100,
     },
 })
 vim.keymap.set("n", "<Leader>a", ":Lazy<CR>")

@@ -16,7 +16,11 @@ return {
     },
     {
         "mason-org/mason.nvim",
-        config = true,
+        config = {
+            ui = {
+                backdrop = 100,
+            }
+        },
     },
     { "mason-org/mason-lspconfig.nvim", config = true },
     {
