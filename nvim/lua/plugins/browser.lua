@@ -12,6 +12,8 @@ return {
             close_if_last_window = true,
             filesystem = {
                 window = {
+                    position = "left",
+                    width = 53,
                     mappings = {
                         ["]c"] = "next_git_modified",
                         ["[c"] = "prev_git_modified",
