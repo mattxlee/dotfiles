@@ -1,12 +1,5 @@
 return {
-    {
-        "ntpeters/vim-better-whitespace",
-        config = function()
-            vim.keymap.set("n", "<Leader>x", ":StripWhitespace<CR>")
-            vim.keymap.set("n", "]x", ":NextTrailingWhitespace<CR>")
-            vim.keymap.set("n", "[x", ":PrevTrailingWhitespace<CR>")
-        end
-    },
+    { "cappyzawa/trim.nvim" },
     { "kylechui/nvim-surround", config = true },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -24,9 +17,10 @@ return {
         config = true,
     },
     {
-        "folke/todo-comments.nvim", config = function()
-            vim.keymap.set({ "n", "v" }, "<Leader>to", function ()
-                require("fzf-lua").grep({search="TODO|HACK|PERF|NOTE|FIX", no_esc=true})
+        "folke/todo-comments.nvim",
+        config = function()
+            vim.keymap.set({ "n", "v" }, "<Leader>to", function()
+                require("fzf-lua").grep({ search = "TODO|HACK|PERF|NOTE|FIX", no_esc = true })
             end)
 
             vim.keymap.set("n", "]t", function()
