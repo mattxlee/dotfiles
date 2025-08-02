@@ -31,6 +31,9 @@ return {
                 set background=dark
                 colorscheme gruvbox
                 highlight SignColumn guibg=0
+                hi! link CurSearch Cursor
+                hi! link IncSearch PmenuThumb
+                hi! link Search PmenuThumb
             ]]
         end
     }
