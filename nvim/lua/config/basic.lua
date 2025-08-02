@@ -42,6 +42,7 @@ vim.keymap.set("n", "<Leader>W", "<c-w>W")
 vim.keymap.set("n", "<Leader><Leader>", "<c-w>x")
 vim.keymap.set("n", "<Leader>=", "<c-w>=")
 vim.keymap.set("n", "<Leader>v", ":vsp<CR>")
+vim.keymap.set("n", "<Leader>s", ":sp<CR>")
 
 -- Navigating in fix window
 vim.keymap.set("n", "<Leader>j", ":cnext<CR>")
