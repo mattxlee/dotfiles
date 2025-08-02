@@ -41,6 +41,10 @@ return {
                         height = 0.9,
                         width = 0.9,
                         backdrop = 100,
+                        preview = {
+                            layout = "vertical",
+                            vertical = "down:50%",
+                        },
                     },
                     keymap = {
                         fzf = {
