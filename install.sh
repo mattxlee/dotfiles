@@ -33,6 +33,7 @@ linkfile .editorconfig .editorconfig
 linkfile .gitconfig .gitconfig
 linkfile .gitignore_global .gitignore_global
 linkfile .zshrc .zshrc
+linkfile .tmux.conf .tmux.conf
 
 if [ ! -d "$HOME/.config" ]; then
     mkdir -p $HOME/.config
@@ -43,16 +44,4 @@ if [ ! -d "$HOME/.config/nvim" ]; then
     echo "Neovim config linked"
 else
     echo "Neovim config exists"
-fi
-
-os=$(uname -s)
-if [ "$os" = "Darwin" ]; then
-    echo "macOS spec:"
-    if [ ! -x $(command -v pbcopy) ]; then
-        echo "command `pbcopy` cannot be found, you need to install it."
-    fi
-    linkfile macos/.tmux.conf .tmux.conf
-elif [ "$os" = "Linux" ]; then
-    echo "Linux spec:"
-    linkfile linux/.tmux.conf .tmux.conf
 fi
