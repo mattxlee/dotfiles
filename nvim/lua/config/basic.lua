@@ -58,6 +58,7 @@ vim.keymap.set("n", "<Leader>q", ":%bd<CR>")
 vim.keymap.set("n", "<Leader>n", ":noh<CR>")
 
 -- Copy to system clipboard
+vim.g.clipboard = 'osc52'
 vim.keymap.set({ "n", "v" }, "<Leader>y", '"*y')
 
 vim.cmd [[
