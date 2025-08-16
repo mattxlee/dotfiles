@@ -30,8 +30,7 @@ return {
         opts = {
             keymap = {
                 preset = "none",
-                ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-                ["<C-e>"] = { "hide" },
+                ["<C-space>"] = { "show", "hide", "show_documentation", "hide_documentation", "show_signature", "hide_signature" },
                 ["<C-y>"] = { "select_and_accept" },
 
                 ["<Up>"] = { "select_prev", "fallback" },
@@ -44,17 +43,21 @@ return {
 
                 ["<C-f>"] = { "snippet_forward", "fallback" },
                 ["<C-b>"] = { "snippet_backward", "fallback" },
-
-                ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
             },
             completion = {
+                trigger = {
+                    show_on_keyboard = true,
+                },
                 menu = {
                     auto_show = true,
                 },
                 documentation = {
                     auto_show = true,
                 },
-                ghost_text = { enabled = false },
+                signature = {
+                    auto_show = true,
+                },
+                ghost_text = { enabled = true },
             },
             snippets = { preset = 'luasnip' },
             sources = {
@@ -63,7 +66,7 @@ return {
             signature = {
                 enabled = true,
                 window = {
-                    show_documentation = false,
+                    show_documentation = true,
                 },
             },
             fuzzy = { implementation = "prefer_rust_with_warning" },
