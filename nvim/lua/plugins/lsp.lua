@@ -30,7 +30,12 @@ return {
         opts = {
             keymap = {
                 preset = "none",
-                ["<C-space>"] = { "show", "hide", "show_documentation", "hide_documentation", "show_signature", "hide_signature" },
+                ["<C-space>"] = { "show", "hide" },
+                ["<C-e>"] = { "hide" },
+
+                ["<C-l>"] = { "show_documentation", "hide_documentation" },
+                ["<C-k>"] = { "show_signature", "hide_signature" },
+
                 ["<C-y>"] = { "select_and_accept" },
 
                 ["<Up>"] = { "select_prev", "fallback" },
@@ -41,8 +46,8 @@ return {
                 ["<C-u>"] = { "scroll_documentation_up", "fallback" },
                 ["<C-d>"] = { "scroll_documentation_down", "fallback" },
 
-                ["<C-f>"] = { "snippet_forward", "fallback" },
-                ["<C-b>"] = { "snippet_backward", "fallback" },
+                ["<tab>"] = { "snippet_forward", "fallback" },
+                ["<S-tab>"] = { "snippet_backward", "fallback" },
             },
             completion = {
                 trigger = {
