@@ -50,16 +50,10 @@ return {
                 ["<S-tab>"] = { "snippet_backward", "fallback" },
             },
             completion = {
-                trigger = {
-                    show_on_keyboard = true,
-                },
                 menu = {
                     auto_show = true,
                 },
                 documentation = {
-                    auto_show = true,
-                },
-                signature = {
                     auto_show = true,
                 },
                 ghost_text = { enabled = true },
