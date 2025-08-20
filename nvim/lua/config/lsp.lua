@@ -5,6 +5,17 @@ vim.keymap.set("n", "<Leader>i", vim.lsp.buf.format, { desc = "Format current do
 vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, { desc = "Show code actions" })
 vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, { desc = "Rename current symbol" })
 
+require('lspconfig').rust_analyzer.setup {
+    settings = {
+        ['rust-analyzer'] = {
+            check = {
+                command = 'clippy',
+                extraArgs = { '--all-features' },
+            },
+        },
+    },
+}
+
 -- Create an autocommand for when LSP attaches to a buffer
 -- local inlay_check_timer = vim.loop.new_timer()
 -- vim.api.nvim_create_autocmd("LspAttach", {
