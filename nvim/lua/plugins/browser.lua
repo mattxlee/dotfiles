@@ -47,6 +47,7 @@ return {
                         width = 0.9,
                         backdrop = 100,
                         preview = {
+                            hidden = true,
                             layout = "vertical",
                             vertical = "down:50%",
                         },
