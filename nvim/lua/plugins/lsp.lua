@@ -46,8 +46,8 @@ return {
                 ["<C-u>"] = { "scroll_documentation_up", "fallback" },
                 ["<C-d>"] = { "scroll_documentation_down", "fallback" },
 
-                ["<tab>"] = { "snippet_forward", "fallback" },
-                ["<S-tab>"] = { "snippet_backward", "fallback" },
+                ["<C-f>"] = { "snippet_forward", "fallback" },
+                ["<C-b>"] = { "snippet_backward", "fallback" },
             },
             completion = {
                 menu = {
