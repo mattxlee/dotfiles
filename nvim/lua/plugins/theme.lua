@@ -20,14 +20,14 @@ return {
             invert_tabline = false,
             invert_intend_guides = false,
             inverse = true, -- invert background for search, diffs, statuslines and errors
-            contrast = "", -- can be 'hard', 'soft' or empty string
+            contrast = "",  -- can be 'hard', 'soft' or empty string
             palette_overrides = {},
             overrides = {},
             dim_inactive = false,
             transparent_mode = false,
         },
-        config = function ()
-            vim.cmd[[
+        config = function()
+            vim.cmd [[
                 set background=dark
                 colorscheme gruvbox
                 highlight SignColumn guibg=0
@@ -36,5 +36,19 @@ return {
                 hi! link Search PmenuThumb
             ]]
         end
+    },
+    {
+        "erl-koenig/theme-hub.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            -- Optional: for themes that use lush (will be notified if a theme requires it)
+            -- "rktjmp/lush.nvim"
+        },
+        config = function()
+            require("theme-hub").setup({
+                persistent = true,
+            })
+        end,
     }
 }
+
