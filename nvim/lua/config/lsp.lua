@@ -10,7 +10,7 @@ require('lspconfig').rust_analyzer.setup {
         ['rust-analyzer'] = {
             check = {
                 command = 'clippy',
-                extraArgs = { '--all-features' },
+                extraArgs = {},
             },
         },
     },
