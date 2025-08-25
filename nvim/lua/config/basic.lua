@@ -61,12 +61,16 @@ vim.keymap.set("n", "<Leader>n", ":noh<CR>")
 vim.keymap.set({ "n", "v" }, "<Leader>y", '"*y')
 
 vim.cmd [[
+    colorscheme codedark
+    hi clear LazyNormal
+    hi link LazyNormal conceal
+    hi link WinSeparator VertSplit
+    hi link markdownError NONE
     set maxmempattern=2000000
     filetype indent on
     autocmd InsertEnter * set nocursorline
     autocmd InsertLeave * set cursorline
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-    hi link markdownError NONE
     let g:tex_conceal=''
     let g:vim_markdown_math=0
     let g:vim_markdown_conceal=0
