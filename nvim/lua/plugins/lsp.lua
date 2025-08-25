@@ -46,6 +46,22 @@ return {
             snippets = { preset = 'luasnip' },
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
+                providers = {
+                    lsp = {
+                        transform_items = function(_, items)
+                            local seen = {}
+                            local deduplicated = {}
+                            for _, item in ipairs(items) do
+                                local key = item.label .. item.kind
+                                if not seen[key] then
+                                    seen[key] = true
+                                    table.insert(deduplicated, item)
+                                end
+                            end
+                            return deduplicated
+                        end,
+                    }
+                }
             },
             signature = {
                 enabled = false,
