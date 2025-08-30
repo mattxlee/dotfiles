@@ -79,6 +79,7 @@ return {
             )
             require("fzf-lua").register_ui_select()
             vim.keymap.set("n", "<c-p>", ":FzfLua files<CR>")
+            vim.keymap.set("n", "<c-]>", ":FzfLua lsp_definitions<CR>")
             vim.keymap.set("n", "<Leader>l", ":FzfLua grep_cword<CR>")
             vim.keymap.set("n", "<Leader>f", ":FzfLua live_grep<CR>")
             vim.keymap.set("n", "<Leader>z", ":FzfLua diagnostics_workspace<CR>")
