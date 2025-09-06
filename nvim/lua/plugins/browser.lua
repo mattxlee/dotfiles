@@ -11,7 +11,7 @@ return {
         opts = {
             close_if_last_window = true,
             filesystem = {
-                follow_current_file = { enabled = true },
+                follow_current_file = { enabled = false },
                 use_libuv_file_watcher = true,
                 window = {
                     position = "left",
