@@ -7,7 +7,23 @@ return {
             }
         },
     },
-    { "mason-org/mason-lspconfig.nvim", config = true },
+    { "mason-org/mason-lspconfig.nvim",  config = true },
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({
+                panel = {
+                    enabled = false,
+                },
+                suggestion = {
+                    enabled = false,
+                },
+            })
+        end,
+    },
+    { "giuxtaposition/blink-cmp-copilot" },
     {
         "saghen/blink.cmp",
         version = "1.*",
@@ -45,7 +61,7 @@ return {
             },
             snippets = { preset = 'luasnip' },
             sources = {
-                default = { "lsp", "path", "snippets", "buffer" },
+                default = { "lsp", "path", "snippets", "buffer", "copilot" },
                 providers = {
                     lsp = {
                         transform_items = function(_, items)
@@ -60,7 +76,13 @@ return {
                             end
                             return deduplicated
                         end,
-                    }
+                    },
+                    copilot = {
+                        name = "copilot",
+                        module = "blink-cmp-copilot",
+                        score_offset = 100,
+                        async = true,
+                    },
                 }
             },
             signature = {
