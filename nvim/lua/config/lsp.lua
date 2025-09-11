@@ -4,6 +4,9 @@ vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, { desc = "Show hover documentati
 vim.keymap.set("n", "<Leader>i", vim.lsp.buf.format, { desc = "Format current document" })
 vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, { desc = "Show code actions" })
 vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, { desc = "Rename current symbol" })
+vim.keymap.set('n', '<leader>l', function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle inlay hints" })
 
 require('lspconfig').rust_analyzer.setup {
     settings = {
