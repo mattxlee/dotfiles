@@ -9,22 +9,6 @@ return {
     },
     { "mason-org/mason-lspconfig.nvim",  config = true },
     {
-        "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
-        event = "InsertEnter",
-        config = function()
-            require("copilot").setup({
-                panel = {
-                    enabled = false,
-                },
-                suggestion = {
-                    enabled = false,
-                },
-            })
-        end,
-    },
-    { "giuxtaposition/blink-cmp-copilot" },
-    {
         "saghen/blink.cmp",
         version = "1.*",
         dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*' },
@@ -60,7 +44,7 @@ return {
             },
             snippets = { preset = 'luasnip' },
             sources = {
-                default = { "lsp", "path", "snippets", "buffer", "copilot" },
+                default = { "lsp", "path", "snippets", "buffer" },
                 providers = {
                     lsp = {
                         transform_items = function(_, items)
@@ -75,12 +59,6 @@ return {
                             end
                             return deduplicated
                         end,
-                    },
-                    copilot = {
-                        name = "copilot",
-                        module = "blink-cmp-copilot",
-                        score_offset = 100,
-                        async = true,
                     },
                 }
             },
