@@ -32,9 +32,8 @@ return {
             keymap = {
                 preset = "none",
                 ["<C-space>"] = { "show", "hide" },
-                ["<C-e>"] = { "hide" },
 
-                ["<C-l>"] = { "show_documentation", "hide_documentation" },
+                ["<C-l>"] = { "show", "hide"},
                 ["<C-k>"] = { "show_signature", "hide_signature" },
 
                 ["<C-y>"] = { "select_and_accept" },
@@ -52,7 +51,7 @@ return {
             },
             completion = {
                 menu = {
-                    auto_show = false,
+                    auto_show = true,
                 },
                 documentation = {
                     auto_show = true,
@@ -86,9 +85,9 @@ return {
                 }
             },
             signature = {
-                enabled = false,
+                enabled = true,
                 window = {
-                    show_documentation = false,
+                    show_documentation = true,
                 },
             },
             fuzzy = { implementation = "prefer_rust_with_warning" },
