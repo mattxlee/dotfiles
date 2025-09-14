@@ -32,4 +32,5 @@ return {
             end, { desc = "Previous todo comment" })
         end
     },
+    { "liangxianzhe/floating-input.nvim" },
 }
