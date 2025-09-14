@@ -37,7 +37,7 @@ cmp.setup({
         end,
     },
     completion = {
-        completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
+        completeopt = "menu,menuone" .. (auto_select and "" or ",noselect"),
         autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
     },
     preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
@@ -68,11 +68,12 @@ cmp.setup({
         end, { "i", "s" }),
     }),
     sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
+        { name = "copilot", group_index = 1 },
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "luasnip", group_index = 2 },
     }, {
-        { name = "path" },
-        { name = "buffer" },
+        { name = "path", group_index = 1 },
+        { name = "buffer", group_index = 1 },
     }),
 })
 cmp.setup.filetype("gitcommit", {

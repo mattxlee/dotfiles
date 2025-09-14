@@ -6,7 +6,22 @@ return {
             "neovim/nvim-lspconfig",
         }
     },
-    { "hrsh7th/nvim-cmp" },
+    {
+        "zbirenbaum/copilot.lua",
+        config = function()
+            require("copilot").setup({
+                suggestion = { enabled = false },
+                panel = { enabled = false },
+            })
+        end,
+    },
+    {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    },
+    { "hrsh7th/nvim-cmp",    dependencies = { "zbirenbaum/copilot-cmp" } },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-path" },
