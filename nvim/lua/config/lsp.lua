@@ -63,3 +63,15 @@ cmp.setup.filetype("gitcommit", {
 
 -- cmp-git
 require("cmp_git").setup()
+
+-- use clippy with rust-analyzer
+require('lspconfig').rust_analyzer.setup {
+    settings = {
+        ['rust-analyzer'] = {
+            check = {
+                command = 'clippy',
+                extraArgs = {},
+            },
+        },
+    }
+}
