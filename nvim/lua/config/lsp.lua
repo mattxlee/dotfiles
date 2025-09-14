@@ -27,6 +27,7 @@ require("mason-lspconfig").setup({
 })
 
 -- cmp
+local auto_select = true
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 cmp.setup({
@@ -35,6 +36,11 @@ cmp.setup({
             luasnip.lsp_expand(args.body)
         end,
     },
+    completion = {
+        completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
+        autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
+    },
+    preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
@@ -44,7 +50,7 @@ cmp.setup({
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({ select = auto_select }),
         -- LuaSnip jump mappings
         ["<TAB>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable(1) then
@@ -67,7 +73,7 @@ cmp.setup({
     }, {
         { name = "path" },
         { name = "buffer" },
-    })
+    }),
 })
 cmp.setup.filetype("gitcommit", {
     sources = cmp.config.sources({
@@ -79,15 +85,3 @@ cmp.setup.filetype("gitcommit", {
 
 -- cmp-git
 require("cmp_git").setup()
-
--- use clippy with rust-analyzer
-require('lspconfig').rust_analyzer.setup {
-    settings = {
-        ['rust-analyzer'] = {
-            check = {
-                command = 'clippy',
-                extraArgs = {},
-            },
-        },
-    }
-}
