@@ -38,7 +38,7 @@ cmp.setup({
     },
     completion = {
         completeopt = "menu,menuone" .. (auto_select and "" or ",noselect"),
-        autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
+        autocomplete = false,
     },
     preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
     window = {
