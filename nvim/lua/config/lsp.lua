@@ -52,14 +52,14 @@ cmp.setup({
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = auto_select }),
         -- LuaSnip jump mappings
-        ["<TAB>"] = cmp.mapping(function(fallback)
+        ["<C-f>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable(1) then
                 luasnip.jump(1)
             else
                 fallback()
             end
         end, { "i", "s" }),
-        ["<S-TAB>"] = cmp.mapping(function(fallback)
+        ["<C-b>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable(-1) then
                 luasnip.jump(-1)
             else
