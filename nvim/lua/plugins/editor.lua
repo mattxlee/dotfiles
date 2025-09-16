@@ -20,7 +20,7 @@ return {
         "folke/todo-comments.nvim",
         config = function()
             vim.keymap.set({ "n", "v" }, "<Leader>to", function()
-                require("fzf-lua").grep({ search = "TODO|HACK|PERF|NOTE|FIX", no_esc = true })
+                require("fzf-lua").grep({ search = "TODO|NOTE", no_esc = true })
             end)
 
             vim.keymap.set("n", "]t", function()
