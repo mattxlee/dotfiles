@@ -74,7 +74,7 @@ cmp.setup({
         { name = "copilot", group_index = 3 },
     }, {
         { name = "path", group_index = 1 },
-        { name = "buffer", group_index = 1 },
+        -- { name = "buffer", group_index = 1 },
     }),
 })
 cmp.setup.filetype("gitcommit", {
