@@ -29,6 +29,7 @@ return {
         "tpope/vim-fugitive",
         config = function()
             vim.keymap.set("n", "<C-g>", ":Git<CR>")
+            vim.keymap.set("n", "<C-h>", ":call ToggleGstatus()<CR>")
         end
     },
 }

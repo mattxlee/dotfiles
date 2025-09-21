@@ -1,5 +1,6 @@
 require("config.lazy")
 require("config.basic")
+require("config.git")
 require("config.browser")
 require("config.lsp")
 require("config.trim")
