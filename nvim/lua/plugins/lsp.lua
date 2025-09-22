@@ -21,7 +21,10 @@ return {
             require("copilot_cmp").setup()
         end
     },
-    { "hrsh7th/nvim-cmp",    dependencies = { "zbirenbaum/copilot-cmp" } },
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = { "zbirenbaum/copilot-cmp" }
+    },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-path" },
@@ -29,7 +32,7 @@ return {
     { "hrsh7th/cmp-nvim-lsp-signature-help" },
     {
         "petertriho/cmp-git",
-        dependencies = { 'hrsh7th/nvim-cmp' },
+        dependencies = { 'hrsh7th/nvim-cmp', 'nvim-lua/plenary.nvim' },
         init = function()
             table.insert(require("cmp").get_config().sources, { name = "git" })
         end

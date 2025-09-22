@@ -1,30 +1,5 @@
 return {
     {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-        },
-        lazy = false,
-        opts = {
-            close_if_last_window = true,
-            filesystem = {
-                follow_current_file = { enabled = false },
-                use_libuv_file_watcher = true,
-                window = {
-                    position = "left",
-                    width = 53,
-                    mappings = {
-                        ["]c"] = "next_git_modified",
-                        ["[c"] = "prev_git_modified",
-                    },
-                },
-            },
-        },
-    },
-    {
         'stevearc/oil.nvim',
         opts = {
             columns = {},
