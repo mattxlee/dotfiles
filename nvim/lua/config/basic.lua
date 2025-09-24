@@ -71,6 +71,7 @@ vim.cmd [[
     autocmd InsertEnter * set nocursorline
     autocmd InsertLeave * set cursorline
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd FileType rust setlocal colorcolumn=101
     let g:tex_conceal=''
     let g:vim_markdown_math=0
     let g:vim_markdown_conceal=0

@@ -87,3 +87,6 @@ cmp.setup.filetype("gitcommit", {
 
 -- cmp-git
 require("cmp_git").setup()
+
+-- flutter
+require("flutter-tools").setup {} -- use defaults

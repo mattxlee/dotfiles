@@ -42,4 +42,12 @@ return {
         version = "v2.*",
         build = "make install_jsregexp"
     },
+    {
+        "nvim-flutter/flutter-tools.nvim",
+        lazy = false,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = true,
+    },
 }
