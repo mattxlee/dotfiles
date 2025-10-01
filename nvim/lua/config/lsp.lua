@@ -27,6 +27,17 @@ require("mason-lspconfig").setup({
 })
 
 -- cmp
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "󰅚 ",
+            [vim.diagnostic.severity.WARN] = "󰀪 ",
+            [vim.diagnostic.severity.HINT] = "󰌵 ",
+            [vim.diagnostic.severity.INFO] = "󰋽 ",
+        },
+    },
+})
+
 local auto_select = true
 local luasnip = require("luasnip")
 local cmp = require("cmp")
@@ -70,9 +81,9 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         { name = "nvim_lsp_signature_help", group_index = 1 },
-        { name = "nvim_lsp", group_index = 2 },
-        { name = "luasnip", group_index = 2 },
-        { name = "copilot", group_index = 3 },
+        { name = "nvim_lsp",                group_index = 2 },
+        { name = "luasnip",                 group_index = 2 },
+        { name = "copilot",                 group_index = 3 },
     }, {
         { name = "path", group_index = 1 },
         -- { name = "buffer", group_index = 1 },
