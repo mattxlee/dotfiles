@@ -16,7 +16,7 @@ require("gruvbox").setup({
     invert_signs = false,
     invert_tabline = false,
     inverse = true, -- invert background for search, diffs, statuslines and errors
-    contrast = "", -- can be "hard", "soft" or empty string
+    contrast = "",  -- can be "hard", "soft" or empty string
     palette_overrides = {},
     overrides = {},
     dim_inactive = false,
@@ -29,3 +29,6 @@ vim.api.nvim_set_hl(0, "CmpSel", { bg = "#504945" })
 
 -- Finally change the color scheme
 vim.cmd("colorscheme gruvbox")
+
+-- The sign-column background color
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "#282828" })
