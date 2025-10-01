@@ -62,7 +62,6 @@ vim.keymap.set("n", "<Leader>n", ":noh<CR>")
 vim.keymap.set({ "n", "v" }, "<Leader>y", '"*y')
 
 vim.cmd [[
-    colorscheme codedark
     hi clear LazyNormal
     hi link LazyNormal conceal
     hi link WinSeparator VertSplit
