@@ -30,6 +30,7 @@ require("mason-lspconfig").setup({
 local auto_select = true
 local luasnip = require("luasnip")
 local cmp = require("cmp")
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -42,8 +43,8 @@ cmp.setup({
     },
     preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
     window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered({ winhighlight = "Normal:CmpNormal,CursorLine:CmpSel" }),
+        documentation = cmp.config.window.bordered({ winhighlight = "Normal:CmpNormal" }),
     },
     mapping = cmp.mapping.preset.insert({
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),

@@ -1,4 +1,4 @@
--- Default options:
+-- Options:
 require("gruvbox").setup({
     terminal_colors = true, -- add neovim terminal colors
     undercurl = true,
@@ -22,4 +22,10 @@ require("gruvbox").setup({
     dim_inactive = false,
     transparent_mode = false,
 })
+
+-- The following definitions are used for the Nvim-cmp auto-comlete menu
+vim.api.nvim_set_hl(0, "CmpNormal", { bg = "#3c3836" })
+vim.api.nvim_set_hl(0, "CmpSel", { bg = "#504945" })
+
+-- Finally change the color scheme
 vim.cmd("colorscheme gruvbox")
