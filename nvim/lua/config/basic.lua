@@ -21,7 +21,7 @@ vim.o.cursorline = true
 
 -- Sign column and show line numbers
 vim.o.number = true
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 vim.o.signcolumn = "yes"
 
 -- No fucking mouse
