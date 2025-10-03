@@ -61,6 +61,9 @@ vim.keymap.set("n", "<Leader>n", ":noh<CR>")
 -- Copy to system clipboard
 vim.keymap.set({ "n", "v" }, "<Leader>y", '"*y')
 
+-- show current file path
+vim.keymap.set("n", "<leader>p", ':echo expand("%:p")<CR>')
+
 vim.cmd [[
     hi clear LazyNormal
     hi link LazyNormal conceal
@@ -77,3 +80,4 @@ vim.cmd [[
     let g:vim_markdown_folding_disabled=1
     let g:vim_markdown_conceal_code_blocks=0
 ]]
+
