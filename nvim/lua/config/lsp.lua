@@ -14,6 +14,8 @@ end, { desc = "Toggle inlay hints" })
 require("mason").setup(
     {
         ui = {
+            width = 0.9,
+            height = 0.9,
             backdrop = 100,
         }
     }

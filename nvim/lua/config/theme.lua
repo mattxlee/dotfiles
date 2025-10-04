@@ -32,6 +32,7 @@ vim.cmd("colorscheme gruvbox")
 
 -- The sign-column background color
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "#282828" })
+vim.api.nvim_set_hl(0, "LazyNormal", { bg = "#3c3836" })
 
 vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = "RED", bg = "#282828" })  -- Example: dark bg for errors
 vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "YELLOW", bg = "#282828" })   -- Adjust colors as needed
