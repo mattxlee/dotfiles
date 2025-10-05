@@ -37,6 +37,7 @@ require("nvim-tree").setup({
         debounce_delay = 500,
     },
     ---
+    reload_on_bufenter = true,
     on_attach = my_on_attach,
     ---
 })
