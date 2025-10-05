@@ -2,7 +2,8 @@ local save_winid
 
 local function is_fugitive_buf(winid)
     local buf = vim.api.nvim_win_get_buf(winid)
-    return vim.api.nvim_buf_get_option(buf, 'filetype') == 'fugitive'
+    local filetype = vim.api.nvim_buf_get_option(buf, 'filetype')
+    return  filetype == 'fugitive' or filetype == 'gitcommit'
 end
 
 local function open_fugitive_status()
@@ -22,7 +23,6 @@ local function close_fugitive_status()
                 do_restore = true
             end
             vim.api.nvim_win_close(winid, false)
-            break
         end
     end
     if do_restore and vim.api.nvim_win_is_valid(save_winid) then
