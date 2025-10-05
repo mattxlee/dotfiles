@@ -14,15 +14,18 @@ local function open_fugitive_status()
 end
 
 local function close_fugitive_status()
-    local found = false
+    local do_restore = false
+    local curr_winid = vim.api.nvim_get_current_win()
     for _, winid in ipairs(vim.api.nvim_list_wins()) do
         if is_fugitive_buf(winid) then
+            if curr_winid == winid then
+                do_restore = true
+            end
             vim.api.nvim_win_close(winid, false)
-            found = true
             break
         end
     end
-    if found and vim.api.nvim_win_is_valid(save_winid) then
+    if do_restore and vim.api.nvim_win_is_valid(save_winid) then
         vim.api.nvim_set_current_win(save_winid)
     end
 end
