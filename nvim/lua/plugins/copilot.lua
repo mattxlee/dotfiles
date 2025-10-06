@@ -12,19 +12,19 @@ return {
                     debounce = 75,
                     trigger_on_accept = true,
                     keymap = {
-                        accept = "<C-y>",
+                        accept = false,
                         accept_word = false,
                         accept_line = false,
                         next = false,
                         prev = false,
-                        dismiss = "<C-k>",
+                        dismiss = false,
                     },
                 },
                 filetypes = {
                     ["*"] = true,
                     help = false,
                 },
-                panel = { enabled = true },
+                panel = { enabled = false },
             })
         end,
     },
