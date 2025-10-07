@@ -28,6 +28,17 @@ require("mason-lspconfig").setup({
     automatic_enable = true,
 })
 
+-- specific language servers settings
+vim.lsp.config("rust_analyzer", {
+    settings = {
+        ["rust-analyzer"] = {
+            check = {
+                command = "clippy"
+            }
+        }
+    }
+})
+
 -- tree-sitter
 require("nvim-treesitter").setup({
     -- A list of parser names, or "all" (the listed parsers MUST always be installed)
