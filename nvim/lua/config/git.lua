@@ -30,5 +30,7 @@ local function close_fugitive_status()
     end
 end
 
+require('gitsigns').setup({})
+
 vim.keymap.set("n", "<C-g>", open_fugitive_status)
 vim.keymap.set('n', '<C-h>', close_fugitive_status)
