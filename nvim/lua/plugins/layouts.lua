@@ -5,7 +5,6 @@ return {
             require("lsp-progress").setup()
         end,
     },
-    { "AndreM222/copilot-lualine" },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -19,7 +18,7 @@ return {
                 lualine_a = { "mode" },
                 lualine_b = { "branch", "diff", "diagnostics" },
                 lualine_c = { "filename" },
-                lualine_x = { "copilot", "encoding", "fileformat", "filetype", function()
+                lualine_x = { "encoding", "fileformat", "filetype", function()
                     return require("lsp-progress").progress()
                 end },
                 lualine_y = { "progress" },
