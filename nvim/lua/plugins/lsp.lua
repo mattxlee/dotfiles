@@ -1,5 +1,4 @@
 return {
-    { "nvim-treesitter/nvim-treesitter",    branch = "main", lazy = false, build = ":TSUpdate" },
     {
         "mason-org/mason-lspconfig.nvim",
         dependencies = {
