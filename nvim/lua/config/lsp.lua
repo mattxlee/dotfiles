@@ -105,7 +105,7 @@ cmp.setup({
     },
     completion = {
         completeopt = "menu,menuone" .. (auto_select and "" or ",noselect"),
-        autocomplete = false,
+        -- autocomplete = false,
     },
     preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
     window = {
@@ -117,7 +117,7 @@ cmp.setup({
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-l>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = auto_select }),
+        ["<C-y>"] = cmp.mapping.confirm({ select = auto_select }),
         -- LuaSnip jump mappings
         ["<C-f>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable(1) then
