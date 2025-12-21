@@ -38,3 +38,6 @@ vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = "RED", bg = "#282828" })  -
 vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = "YELLOW", bg = "#282828" })   -- Adjust colors as needed
 vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "WHITE", bg = "#282828" })      -- Transparent for info
 vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = "WHITE", bg = "#282828" })
+
+vim.api.nvim_set_hl(0, "Search", { link = "Visual"})
+vim.api.nvim_set_hl(0, "IncSearch", { link = "Visual"})
