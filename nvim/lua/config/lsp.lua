@@ -105,7 +105,7 @@ cmp.setup({
     },
     completion = {
         completeopt = "menu,menuone" .. (auto_select and "" or ",noselect"),
-        -- autocomplete = false,
+        autocomplete = false,
     },
     preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
     window = {
@@ -140,7 +140,7 @@ cmp.setup({
         { name = "luasnip",                 group_index = 2 },
     }, {
         { name = "path",   group_index = 2 },
-        { name = "buffer", group_index = 2 },
+        -- { name = "buffer", group_index = 2 },
     }),
 })
 cmp.setup.filetype("gitcommit", {
