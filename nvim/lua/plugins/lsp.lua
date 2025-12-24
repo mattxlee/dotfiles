@@ -32,4 +32,8 @@ return {
         },
         config = true,
     },
+    {
+        "stevearc/conform.nvim",
+        opts = {},
+    }
 }
