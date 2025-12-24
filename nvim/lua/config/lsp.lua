@@ -2,13 +2,32 @@
 vim.keymap.set("n", "<Leader>m", ":Mason<CR>")
 vim.keymap.set("n", "<Leader>d", vim.diagnostic.open_float, { desc = "Show diagnostics under cursor" })
 vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, { desc = "Show hover documentation" })
-vim.keymap.set("n", "<Leader>i", vim.lsp.buf.format, { desc = "Format current document" })
 vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, { desc = "Rename current symbol" })
 vim.keymap.set("n", "<Leader>rs", ":LspRestart<CR>", { desc = "Restart LSP" })
 vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, { desc = "Show code actions" })
 vim.keymap.set("n", "<leader>cl", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggle inlay hints" })
+
+-- format code
+require("conform").setup({
+    formatters_by_ft = {
+        htmldjango = { "djlint" },
+    },
+})
+
+vim.api.nvim_create_user_command("Format", function(args)
+    local range = nil
+    if args.count ~= -1 then
+        local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+        range = {
+            start = { args.line1, 0 },
+            ["end"] = { args.line2, end_line:len() },
+        }
+    end
+    require("conform").format({ async = true, lsp_format = "fallback", range = range })
+end, { range = true })
+vim.keymap.set("n", "<Leader>i", ":Format<CR>", { desc = "Format current document" })
 
 -- mason
 require("mason").setup(
@@ -97,6 +116,8 @@ local auto_select = true
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 
+luasnip.filetype_extend("htmldjango", { "html" })
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -139,7 +160,7 @@ cmp.setup({
         { name = "nvim_lsp",                group_index = 2 },
         { name = "luasnip",                 group_index = 2 },
     }, {
-        { name = "path",   group_index = 2 },
+        { name = "path", group_index = 2 },
         -- { name = "buffer", group_index = 2 },
     }),
 })
