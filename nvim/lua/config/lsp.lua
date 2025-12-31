@@ -177,3 +177,16 @@ require("cmp_git").setup()
 
 -- flutter
 require("flutter-tools").setup()
+
+-- crates
+require("crates").setup {
+    lsp = {
+        enabled = true,
+        actions = true,
+        completion = true,
+        hover = true,
+    },
+    popup = {
+        border = "rounded",
+    }
+}
