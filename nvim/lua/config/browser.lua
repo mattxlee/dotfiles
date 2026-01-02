@@ -1,6 +1,4 @@
 vim.keymap.set("n", "<C-j>", ":NvimTreeFindFile<CR>")
-vim.keymap.set("n", "<Leader>e", ":NvimTreeToggle<CR>")
-
 vim.keymap.set("n", "<Leader>.", ":Oil<CR>")
 
 local function my_on_attach(bufnr)
