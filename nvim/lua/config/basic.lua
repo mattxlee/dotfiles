@@ -72,8 +72,6 @@ vim.cmd [[
     hi link markdownError NONE
     set maxmempattern=2000000
     filetype indent on
-    autocmd InsertEnter,WinLeave * set nocursorline
-    autocmd InsertLeave,WinEnter * set cursorline
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
     let g:tex_conceal=''
     let g:vim_markdown_math=0
