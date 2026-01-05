@@ -60,6 +60,15 @@ vim.lsp.config("rust_analyzer", {
         }
     }
 })
+vim.lsp.config("lua_ls", {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { "vim" },
+            },
+        }
+    }
+})
 
 -- tree-sitter
 require("nvim-treesitter").setup({
