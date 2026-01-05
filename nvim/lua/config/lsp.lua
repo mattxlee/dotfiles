@@ -51,6 +51,9 @@ require("mason-lspconfig").setup({
 vim.lsp.config("rust_analyzer", {
     settings = {
         ["rust-analyzer"] = {
+            diagnostics = {
+                disabled = { "inactive-code" },
+            },
             check = {
                 command = "clippy"
             }
