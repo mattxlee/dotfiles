@@ -70,6 +70,7 @@ return {
             vim.keymap.set("n", "<Leader>b", ":FzfLua buffers<CR>")
             vim.keymap.set("n", "gd", ":FzfLua lsp_definitions<CR>")
             vim.keymap.set("n", "gr", ":FzfLua lsp_references<CR>")
+            vim.keymap.set("n", "gi", ":FzfLua lsp_implementations<CR>")
         end,
     },
 }
