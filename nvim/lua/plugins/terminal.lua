@@ -6,7 +6,10 @@ return {
             open_mapping = [[<Leader>tt]],     -- Shortcut to open/close terminal
             insert_mappings = false,           -- Apply mapping in insert mode
             terminal_mappings = true,          -- Apply mapping in terminal mode
-            direction = "horizontal",
+            direction = "float",
+            float_opts = {
+                border = "rounded",
+            },
             size = function(term)
                 if term.direction == "horizontal" then
                     return vim.o.lines * 0.5
