@@ -45,6 +45,10 @@ vim.keymap.set("n", "<Leader>=", "<c-w>=")
 vim.keymap.set("n", "<Leader>v", ":vsp<CR>")
 vim.keymap.set("n", "<Leader>s", ":sp<CR>")
 vim.keymap.set("n", "<Leader>e", "<c-w>x")
+vim.keymap.set("n", "+", ":horizontal resize +3<CR>")
+vim.keymap.set("n", "_", ":horizontal resize -3<CR>")
+vim.keymap.set("n", ")", ":vertical resize +3<CR>")
+vim.keymap.set("n", "(", ":vertical resize -3<CR>")
 
 -- Navigating in fix window
 vim.keymap.set("n", "<Leader>j", ":cnext<CR>")
