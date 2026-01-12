@@ -13,6 +13,7 @@ local function my_on_attach(bufnr)
 
     -- remove a default
     vim.keymap.del("n", "<C-e>", { buffer = bufnr })
+    vim.keymap.set("n", "<CR>", api.node.open.no_window_picker, opts("Open: No Window Picker"))
 end
 
 require("nvim-tree").setup({
