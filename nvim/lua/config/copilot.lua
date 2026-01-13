@@ -1,6 +1,3 @@
-vim.keymap.set("n", "<Leader>cc", ":CopilotChatToggle<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>cm", ":CopilotChatCommit<CR>", { noremap = true, silent = true })
-
 vim.keymap.set("i", "<C-y>", function()
     require("copilot.suggestion").accept()
 end, { silent = true, noremap = true })
