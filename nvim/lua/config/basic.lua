@@ -71,9 +71,6 @@ vim.keymap.set({ "n", "v" }, "<Leader>y", '"*y')
 -- show current file path
 vim.keymap.set("n", "<leader>p", ':echo expand("%:p")<CR>')
 
--- terminal map
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
-
 vim.cmd [[
     hi clear LazyNormal
     hi link LazyNormal conceal
