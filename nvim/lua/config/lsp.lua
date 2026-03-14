@@ -124,7 +124,7 @@ vim.diagnostic.config({
     },
 })
 
-local auto_select = true
+local auto_select = false
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 
@@ -151,6 +151,8 @@ cmp.setup({
         ["<C-l>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<C-y>"] = cmp.mapping.confirm({ select = auto_select }),
+        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         -- LuaSnip jump mappings
         ["<C-f>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable(1) then
