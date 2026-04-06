@@ -3,6 +3,7 @@ vim.keymap.set("n", "<Leader>m", ":Mason<CR>")
 vim.keymap.set("n", "<Leader>d", vim.diagnostic.open_float, { desc = "Show diagnostics under cursor" })
 vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, { desc = "Show hover documentation" })
 vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, { desc = "Rename current symbol" })
+vim.keymap.set("n", "<Leader>ry", ":LspSync<CR>", { desc = "Reload modified sources" })
 vim.keymap.set("n", "<Leader>rs", ":LspRestart<CR>", { desc = "Restart LSP" })
 vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, { desc = "Show code actions" })
 vim.keymap.set("n", "<leader>cl", function()
@@ -69,6 +70,22 @@ vim.lsp.config("lua_ls", {
         }
     }
 })
+
+vim.api.nvim_create_user_command("LspSync", function()
+    vim.cmd("checktime")
+end, {})
+
+vim.api.nvim_create_user_command("LspRestart", function()
+    local bufnr = vim.api.nvim_get_current_buf()
+
+    for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+        client:stop()
+    end
+
+    vim.defer_fn(function()
+        vim.cmd("edit")
+    end, 100)
+end, {})
 
 -- tree-sitter
 require("nvim-treesitter").setup({
