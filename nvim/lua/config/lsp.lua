@@ -43,7 +43,7 @@ require("mason").setup(
 
 -- mason-lspconfig
 require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "vimls" },
+    ensure_installed = {},
     automatic_installation = true,
     automatic_enable = true,
 })
