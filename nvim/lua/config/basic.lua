@@ -85,3 +85,6 @@ vim.cmd [[
     let g:vim_markdown_folding_disabled=1
     let g:vim_markdown_conceal_code_blocks=0
 ]]
+
+local site = vim.fn.stdpath('data') .. '/site'
+vim.opt.runtimepath:append(site)
