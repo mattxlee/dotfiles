@@ -1,6 +1,13 @@
 return {
     {
+        "JezerM/oil-lsp-diagnostics.nvim",
+        dependencies = { "stevearc/oil.nvim" },
+        opts = {}
+    },
+    { "malewicz1337/oil-git.nvim", dependencies = { "stevearc/oil.nvim" } },
+    {
         'stevearc/oil.nvim',
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
             columns = {},
             keymaps = {
