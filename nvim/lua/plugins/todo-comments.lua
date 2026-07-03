@@ -1,21 +1,4 @@
 return {
-    { "cappyzawa/trim.nvim" },
-    { "kylechui/nvim-surround", config = true },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        opts = {
-            indent = {
-                char = "▏",
-            },
-            scope = { enabled = false },
-        }
-    },
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        config = true,
-    },
     {
         "folke/todo-comments.nvim",
         config = function()
@@ -31,6 +14,5 @@ return {
                 require("todo-comments").jump_prev()
             end, { desc = "Previous todo comment" })
         end
-    },
-    { "liangxianzhe/floating-input.nvim" },
+    }
 }

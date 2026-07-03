@@ -1,25 +1,5 @@
 return {
     {
-        'stevearc/oil.nvim',
-        opts = {
-            columns = {},
-            keymaps = {
-                ["<C-v>"] = "actions.preview",
-                ["<C-p>"] = false,
-            },
-        },
-        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-        lazy = false,
-    },
-    {
-        "nvim-tree/nvim-tree.lua",
-        version = "*",
-        lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-    },
-    {
         "ibhagwan/fzf-lua",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
@@ -72,5 +52,5 @@ return {
             vim.keymap.set("n", "gr", ":FzfLua lsp_references<CR>")
             vim.keymap.set("n", "gi", ":FzfLua lsp_implementations<CR>")
         end,
-    },
+    }
 }

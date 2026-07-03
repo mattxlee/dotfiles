@@ -1,11 +1,5 @@
 return {
     {
-        "linrongbin16/lsp-progress.nvim",
-        config = function()
-            require("lsp-progress").setup()
-        end,
-    },
-    {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
