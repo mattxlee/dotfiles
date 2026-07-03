@@ -4,7 +4,6 @@ return {
         opts = {
             columns = {},
             keymaps = {
-                ["<C-v>"] = "actions.preview",
                 ["<C-p>"] = false,
             },
         },
