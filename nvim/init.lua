@@ -7,6 +7,5 @@ require("config.lsp")
 require("config.trim")
 require("config.barbar")
 require("config.wrap")
-require("config.terminal")
 
 require("config.theme")
