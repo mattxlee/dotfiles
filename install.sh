@@ -45,3 +45,10 @@ if [ ! -d "$HOME/.config/nvim" ]; then
 else
     echo "Neovim config exists"
 fi
+
+if [ ! -d "$HOME/.config/kitty" ]; then
+    ln -s $PWD/kitty $HOME/.config/kitty
+    echo "Kitty config linked"
+else
+    echo "Kitty config exists"
+fi
