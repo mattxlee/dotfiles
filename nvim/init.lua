@@ -1,6 +1,5 @@
 require("config.lazy")
 require("config.basic")
-require("config.theme")
 require("config.git")
 require("config.copilot")
 require("config.oil")
@@ -9,3 +8,5 @@ require("config.trim")
 require("config.barbar")
 require("config.wrap")
 require("config.terminal")
+
+require("config.theme")
