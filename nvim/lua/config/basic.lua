@@ -14,9 +14,19 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.smartindent = false
 vim.o.autoindent = true
-vim.o.linebreak = true
-vim.o.breakindent = true
-vim.o.breakindentopt = "shift:4"
+
+-- Line wrapping options
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.breakindent = true
+vim.opt.breakindentopt = "shift:4"   -- Or "sbr" to match showbreak
+vim.opt.showbreak = "↳ "
+
+-- Make movement keys (j/k) move by visual lines instead of physical lines
+vim.keymap.set('n', 'j', 'gj', { noremap = true, silent = true })
+vim.keymap.set('n', 'k', 'gk', { noremap = true, silent = true })
+vim.keymap.set('n', '0', 'g0', { noremap = true, silent = true })
+vim.keymap.set('n', '$', 'g$', { noremap = true, silent = true })
 
 -- Show cursor line
 vim.o.cursorline = true
@@ -25,13 +35,6 @@ vim.o.cursorline = true
 vim.o.number = true
 vim.o.relativenumber = false
 vim.o.signcolumn = "yes"
-
--- No fucking mouse
-vim.o.mouse = ""
-vim.keymap.set("", "<up>", "<nop>", { noremap = true })
-vim.keymap.set("", "<down>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<up>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<down>", "<nop>", { noremap = true })
 
 -- Set windows border to "rounded"
 vim.o.winborder = "rounded"
