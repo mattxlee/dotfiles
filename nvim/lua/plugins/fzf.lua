@@ -22,23 +22,8 @@ return {
                     },
                     fzf_colors = {
                         true, -- inherit fzf colors that aren"t specified below from
-                        -- the auto-generated theme similar to `fzf_colors=true`
-                        -- ["fg"]      = { "fg", "CursorLine" },
-                        -- ["bg"]      = { "bg", "Normal" },
-                        -- ["hl"]      = { "fg", "Comment" },
-                        ["fg+"]     = { "fg", "Normal" },
-                        ["bg+"]     = { "bg", "Normal" },
-                        -- ["hl+"]     = { "fg", "Statement" },
-                        -- ["info"]    = { "fg", "PreProc" },
-                        -- ["prompt"]  = { "fg", "Conditional" },
-                        -- ["pointer"] = { "fg", "Exception" },
-                        -- ["marker"]  = { "fg", "Keyword" },
-                        -- ["spinner"] = { "fg", "Label" },
-                        -- ["header"]  = { "fg", "Comment" },
-                        -- ["gutter"]  = "-1",
                     },
                 }
-
             )
             require("fzf-lua").register_ui_select()
             vim.keymap.set("n", "<c-p>", ":FzfLua files<CR>")
