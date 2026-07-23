@@ -155,7 +155,7 @@ cmp.setup({
     preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
     window = {
         completion = cmp.config.window.bordered({ winhighlight = "Normal:CmpNormal,CursorLine:CmpSel" }),
-        documentation = cmp.config.window.bordered({ winhighlight = "Normal:CmpNormal" }),
+        documentation = false, -- cmp.config.window.bordered({ winhighlight = "Normal:CmpNormal" }),
     },
     mapping = cmp.mapping.preset.insert({
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
@@ -166,18 +166,14 @@ cmp.setup({
         ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         -- LuaSnip jump mappings
-        ["<C-f>"] = cmp.mapping(function(fallback)
+        ["<C-f>"] = cmp.mapping(function(_)
             if luasnip.jumpable(1) then
                 luasnip.jump(1)
-            else
-                fallback()
             end
         end, { "i", "s" }),
-        ["<C-b>"] = cmp.mapping(function(fallback)
+        ["<C-b>"] = cmp.mapping(function(_)
             if luasnip.jumpable(-1) then
                 luasnip.jump(-1)
-            else
-                fallback()
             end
         end, { "i", "s" }),
     }),
