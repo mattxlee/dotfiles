@@ -1,3 +1,6 @@
+-- Disable mouse
+vim.o.mouse = ""
+
 -- Disable backup files
 vim.o.backup = false
 vim.o.writebackup = false
