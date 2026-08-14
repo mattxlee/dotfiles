@@ -6,12 +6,19 @@ vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, { desc = "Rename current s
 vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, { desc = "Show code actions" })
 vim.keymap.set("n", "<leader>cl", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+
 end, { desc = "Toggle inlay hints" })
 
 if vim.fn.exists(":LspInfo") == 0 then
     vim.api.nvim_create_user_command("LspInfo", function()
         vim.cmd("checkhealth vim.lsp")
     end, { desc = "Show LSP client and configuration information" })
+end
+
+if vim.fn.exists(":LspRestart") == 0 then
+    vim.api.nvim_create_user_command("LspRestart", function()
+        vim.cmd("lsp restart")
+    end, { desc = "Restart all LSP clients" })
 end
 
 -- format code
