@@ -17,12 +17,4 @@ rmlink () {
 rmpath ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 rmpath ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-rmlink $HOME/.clang-format
-rmlink $HOME/.clang-tidy
-rmlink $HOME/.editorconfig
-rmlink $HOME/.gitconfig
-rmlink $HOME/.gitignore_global
-rmlink $HOME/.tmux.conf
 rmlink $HOME/.zshrc
-
-rmlink $HOME/.config/nvim
