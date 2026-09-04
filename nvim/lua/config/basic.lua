@@ -1,3 +1,6 @@
+-- System clipboard
+vim.o.clipboard = "unnamedplus"
+
 -- Disable mouse
 vim.o.mouse = ""
 
