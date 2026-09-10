@@ -28,7 +28,10 @@ vim.api.nvim_set_hl(0, "CmpNormal", { bg = "#3c3836" })
 vim.api.nvim_set_hl(0, "CmpSel", { bg = "#504945" })
 
 -- Finally change the color scheme
-vim.cmd("colorscheme gruvbox")
+vim.o.background = "dark"
+vim.cmd([[
+    colorscheme gruvbox
+]])
 
 -- The sign-column background color
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "#282828" })
