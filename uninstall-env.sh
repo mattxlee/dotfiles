@@ -1,11 +1,6 @@
 #!/bin/bash
 
-rmlink () {
-    if [ -L $1 ]; then
-        echo "removing link $1"
-        rm -rf $1
-    fi
-}
+source ./utils.sh
 
 rmlink $HOME/.clang-format
 rmlink $HOME/.clang-tidy
