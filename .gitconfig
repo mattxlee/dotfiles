@@ -22,6 +22,10 @@
     helper = store
 [credential "github.com"]
     useHttpPath = true
+[include]
+    path = ~/.gitconfig-proxy
+
+; To enable proxy, put the following content into $HOME/.gitconfig-proxy
 ; [http]
-;     proxy = http://127.0.0.1:8080
-;     sslVerify = false
+;      proxy = http://10.0.0.222:8080
+;      sslVerify = false
