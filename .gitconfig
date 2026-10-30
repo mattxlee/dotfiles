@@ -24,6 +24,14 @@
     useHttpPath = true
 [include]
     path = ~/.gitconfig-proxy
+    path = ~/.gitconfig-local
+
+; ~/.gitconfig-proxy and ~/.gitconfig-local are machine-specific and optional
+; (git silently ignores missing include files). Use .gitconfig-local to
+; override settings on a machine, e.g. on a headless server:
+; [credential]
+;      helper =
+;      helper = cache --timeout=86400
 
 ; To enable proxy, put the following content into $HOME/.gitconfig-proxy
 ; [http]
