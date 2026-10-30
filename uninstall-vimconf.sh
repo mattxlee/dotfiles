@@ -1,2 +1,5 @@
 #!/bin/sh
-rm ~/.vimrc
+source ./utils.sh
+
+rmpath $HOME/.vimrc
+rmpath $HOME/.vim
