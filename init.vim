@@ -293,6 +293,31 @@ endfunction
 
 nnoremap <leader>f :call <SID>FzfRg(input('Search: '))<CR>
 nnoremap <leader>l :call <SID>FzfRg(expand('<cword>'), 1)<CR>
+
+" <C-p>: pick a file from the current directory (respecting .gitignore)
+"        with fzf and open it.
+function! s:FzfFiles() abort
+    if !executable('fzf') || !executable('rg')
+        echohl ErrorMsg
+        echomsg 'FzfFiles: requires fzf and rg'
+        echohl None
+        return
+    endif
+
+    let l:out = system('rg --files | fzf --scheme=path --prompt "Files> "')
+    redraw!
+
+    if v:shell_error || empty(l:out)
+        return
+    endif
+
+    let l:file = get(split(l:out, "\n"), 0, '')
+    if !empty(l:file)
+        execute 'edit ' . fnameescape(l:file)
+    endif
+endfunction
+
+nnoremap <C-p> :call <SID>FzfFiles()<CR>
 " ---- end of Search with fzf + ripgrep ----
 
 " 每次 yank 后自动复制到本地系统剪切板
