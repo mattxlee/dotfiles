@@ -7,9 +7,6 @@ Plug 'morhetz/gruvbox'
 " layouts
 Plug 'vim-airline/vim-airline'
 
-" switch header/source
-Plug 'vim-scripts/a.vim'
-
 " git related
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -156,11 +153,6 @@ noremap <leader>W <C-W>W
 noremap <leader><leader> <C-W>w
 " ---- end of Switch
 
-" ---- Switch between header/source
-let g:alternateNoDefaultAlternate=1
-noremap <C-H> :silent A<CR>\|:e<CR>
-" ---- end of Switch between header/source
-
 " ---- File explorer shortcuts ----
 let g:netrw_banner=0
 noremap <leader>s :sp<CR>
@@ -226,7 +218,8 @@ let the_root=['.root', '.svn', '.git', '.hg', '.project']
 " ---- end of define the way to find root dir for projects
 
 " ---- Vim tags settings ----
-set tags=~/.cache/tags
+" gutentags prepends the generated tag file to 'tags' automatically,
+" so don't override the default './tags,tags' here.
 let g:gutentags_project_root=the_root
 let g:gutentags_ctags_tagfile='.tags'
 let g:gutentags_modules=[]
@@ -274,7 +267,10 @@ let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 " ---- end of FzF settings ----
 
 " 每次 yank 后自动复制到本地系统剪切板
-autocmd TextYankPost *
-    \ if v:event.operator ==# 'y' |
-    \ call OSCYankRegister('"') |
-    \ endif
+augroup osc_yank
+    autocmd!
+    autocmd TextYankPost *
+        \ if v:event.operator ==# 'y' && exists('*OSCYankRegister') |
+        \ call OSCYankRegister('"') |
+        \ endif
+augroup END

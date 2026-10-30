@@ -1,30 +1,32 @@
 linkfile() {
-    if [ -L "$HOME/$2" ] || [ -f "$HOME/$2" ]; then
-        echo "$1 exists"
+    local src="$1"
+    local dest="$HOME/$2"
+    if [ -L "$dest" ] || [ -e "$dest" ]; then
+        echo "$2 exists"
     else
-        ln -s $PWD/$1 $HOME/$2
-        echo "linked $1"
+        ln -s "$PWD/$src" "$dest"
+        echo "linked $src"
     fi
 }
 
 clone_plugin() {
-    SOURCE_URL=$1
-    DEST_DIR=$2
-    if [ ! -d $DEST_DIR ]; then
-        git clone $SOURCE_URL $DEST_DIR
+    local url="$1"
+    local dest="$2"
+    if [ ! -d "$dest" ]; then
+        git clone "$url" "$dest"
     fi
 }
 
 rmpath() {
-    if [ -d $1 ]; then
+    if [ -d "$1" ]; then
         echo "removing dir $1"
-        rm -rf $1
+        rm -rf "$1"
     fi
 }
 
-rmlink () {
-    if [ -L $1 ]; then
+rmlink() {
+    if [ -L "$1" ]; then
         echo "removing link $1"
-        rm -rf $1
+        rm -rf "$1"
     fi
 }

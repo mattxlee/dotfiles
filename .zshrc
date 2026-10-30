@@ -102,8 +102,17 @@ source $ZSH/oh-my-zsh.sh
 
 setopt auto_cd
 cdpath=($HOME $HOME/Workspace/)
-source $HOME/.profile
-export GPG_TTY=$(tty)
+
+# Shared environment (PATH, aliases) with sh/bash login shells.
+# guard against missing file and de-duplicate PATH when nesting shells.
+if [ -r "$HOME/.profile" ]; then
+    source "$HOME/.profile"
+    typeset -U path
+fi
+
+if [ -t 0 ]; then
+    export GPG_TTY=$(tty)
+fi
 
 # apply path for node version manager (nvm)
 export NVM_DIR="$HOME/.nvm"
