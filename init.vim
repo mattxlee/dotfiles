@@ -21,14 +21,9 @@ Plug 'sbdchd/neoformat'
 " common code editing
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
-Plug 'vim-scripts/DoxygenToolkit.vim'
 
 " tags
 Plug 'ludovicchabant/vim-gutentags'
-
-" fuzzy search and more
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 
 " copy/paste with system clipboard
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
@@ -243,28 +238,60 @@ if !isdirectory(g:gutentags_cache_dir)
 endif
 " ---- end of Vim tags settings ----
 
-" ---- FzF settings ----
-let g:fzf_vim={}
-let g:fzf_vim.preview_window=[]
-let g:fzf_layout={'down':'20%'}
-noremap <c-p> :Files<CR>
-noremap <leader>o :BTags<CR>
-noremap <leader>g :Tags<CR>
-noremap <leader>f :Rg<CR>
-noremap <leader>l :Rg <C-R><C-W><CR>
-noremap <leader>b :Buffers<CR>
-noremap <leader>e :GFiles?<CR>
+" ---- Search with fzf + ripgrep ----
+" <leader>f: prompt for a pattern (regex), pick matches in fzf, load them
+"            into the quickfix list and open it.
+" <leader>l: same, using the word under the cursor as a fixed string.
+" Tab toggles selection, ctrl-a selects all, Enter accepts, Esc cancels.
+function! s:FzfRg(query, ...) abort
+    let l:query = a:query
+    if empty(l:query)
+        return
+    endif
+    if !executable('fzf') || !executable('rg')
+        echohl ErrorMsg
+        echomsg 'FzfRg: requires fzf and rg'
+        echohl None
+        return
+    endif
 
-" CTRL-A CTRL-Q to select all and build quickfix list
-function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
+    let l:flags = a:0 && a:1 ? '--fixed-strings' : ''
+    let l:cmd = printf(
+        \ 'rg --column --line-number --no-heading --color=never --smart-case %s -- %s'
+        \ . ' | fzf --multi --delimiter : --nth 4.. --prompt "Rg> "',
+        \ l:flags, shellescape(l:query))
+
+    let l:out = system(l:cmd)
+    redraw!
+
+    if v:shell_error || empty(l:out)
+        return
+    endif
+
+    let l:items = []
+    for l:line in split(l:out, "\n")
+        let l:m = matchlist(l:line, '^\(.\{-}\):\(\d\+\):\(\d\+\):\(.*\)$')
+        if !empty(l:m)
+            call add(l:items, {
+                \ 'filename': l:m[1],
+                \ 'lnum': str2nr(l:m[2]),
+                \ 'col': str2nr(l:m[3]),
+                \ 'text': l:m[4],
+                \ })
+        endif
+    endfor
+
+    if empty(l:items)
+        return
+    endif
+
+    call setqflist([], ' ', {'title': 'rg: ' . l:query, 'items': l:items})
+    copen
 endfunction
-let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list') }
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-" ---- end of FzF settings ----
+
+nnoremap <leader>f :call <SID>FzfRg(input('Search: '))<CR>
+nnoremap <leader>l :call <SID>FzfRg(expand('<cword>'), 1)<CR>
+" ---- end of Search with fzf + ripgrep ----
 
 " 每次 yank 后自动复制到本地系统剪切板
 augroup osc_yank
