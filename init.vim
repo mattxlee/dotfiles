@@ -22,6 +22,12 @@ Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
 
+" fuzzy finder
+" fzf#install() fetches a recent fzf into ~/.vim/plugged/fzf/bin, because
+" distro packages can be older than the plugin's minimum required version.
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " copy/paste with system clipboard
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
@@ -206,39 +212,36 @@ nnoremap <C-h> :call <SID>CloseFugitiveStatus()<CR>
 " ---- end of Git related settings ----
 
 " ---- Search with fzf + ripgrep ----
-" <leader>f: prompt for a pattern (regex), pick matches in fzf, load them
-"            into the quickfix list and open it.
+" <C-p>: pick a file from the current directory (respecting .gitignore).
+" <leader>f: prompt for a pattern (regex), pick matches, load them into the
+"            quickfix list and open it.
 " <leader>l: same, using the word under the cursor as a fixed string.
 " Tab toggles selection, ctrl-a selects all, ctrl-d deselects all,
 " ctrl-t toggles all, Enter accepts, Esc cancels.
-function! s:FzfRg(query, ...) abort
-    let l:query = a:query
-    if empty(l:query)
-        return
-    endif
+" fzf runs inside a Vim terminal buffer (fzf#run), so its UI and keyboard
+" input both belong to the real terminal; do not run it with system().
+function! s:FzfFiles() abort
     if !executable('fzf') || !executable('rg')
         echohl ErrorMsg
-        echomsg 'FzfRg: requires fzf and rg'
+        echomsg 'FzfFiles: requires fzf and rg'
         echohl None
         return
     endif
 
-    let l:flags = a:0 && a:1 ? '--fixed-strings' : ''
-    let l:cmd = printf(
-        \ 'rg --column --line-number --no-heading --color=never --smart-case %s -- %s'
-        \ . ' | fzf --multi --delimiter : --nth 4.. --prompt "Rg> "'
-        \ . ' --bind "ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all"',
-        \ l:flags, shellescape(l:query))
+    call fzf#run(fzf#wrap({
+        \ 'source': 'rg --files',
+        \ 'sink': function('s:OpenFile'),
+        \ 'options': ['--scheme=path', '--prompt', 'Files> '],
+        \ }))
+endfunction
 
-    let l:out = system(l:cmd)
-    redraw!
+function! s:OpenFile(file) abort
+    execute 'edit ' . fnameescape(a:file)
+endfunction
 
-    if v:shell_error || empty(l:out)
-        return
-    endif
-
+function! s:FzfRgSink(query, lines) abort
     let l:items = []
-    for l:line in split(l:out, "\n")
+    for l:line in a:lines
         let l:m = matchlist(l:line, '^\(.\{-}\):\(\d\+\):\(\d\+\):\(.*\)$')
         if !empty(l:m)
             call add(l:items, {
@@ -254,37 +257,39 @@ function! s:FzfRg(query, ...) abort
         return
     endif
 
-    call setqflist([], ' ', {'title': 'rg: ' . l:query, 'items': l:items})
+    call setqflist([], ' ', {'title': 'rg: ' . a:query, 'items': l:items})
     copen
 endfunction
 
-nnoremap <leader>f :call <SID>FzfRg(input('Search: '))<CR>
-nnoremap <leader>l :call <SID>FzfRg(expand('<cword>'), 1)<CR>
-
-" <C-p>: pick a file from the current directory (respecting .gitignore)
-"        with fzf and open it.
-function! s:FzfFiles() abort
+function! s:FzfRg(query, ...) abort
+    let l:query = a:query
+    if empty(l:query)
+        return
+    endif
     if !executable('fzf') || !executable('rg')
         echohl ErrorMsg
-        echomsg 'FzfFiles: requires fzf and rg'
+        echomsg 'FzfRg: requires fzf and rg'
         echohl None
         return
     endif
 
-    let l:out = system('rg --files | fzf --scheme=path --prompt "Files> "')
-    redraw!
+    let l:flags = a:0 && a:1 ? '--fixed-strings' : ''
+    let l:cmd = printf(
+        \ 'rg --column --line-number --no-heading --color=never --smart-case %s -- %s',
+        \ l:flags, shellescape(l:query))
 
-    if v:shell_error || empty(l:out)
-        return
-    endif
-
-    let l:file = get(split(l:out, "\n"), 0, '')
-    if !empty(l:file)
-        execute 'edit ' . fnameescape(l:file)
-    endif
+    call fzf#run(fzf#wrap({
+        \ 'source': l:cmd,
+        \ 'sink*': function('s:FzfRgSink', [l:query]),
+        \ 'options': ['--multi', '--delimiter', ':', '--nth', '4..',
+        \             '--prompt', 'Rg> ',
+        \             '--bind', 'ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all'],
+        \ }))
 endfunction
 
 nnoremap <C-p> :call <SID>FzfFiles()<CR>
+nnoremap <leader>f :call <SID>FzfRg(input('Search: '))<CR>
+nnoremap <leader>l :call <SID>FzfRg(expand('<cword>'), 1)<CR>
 " ---- end of Search with fzf + ripgrep ----
 
 " 每次 yank 后自动复制到本地系统剪切板
