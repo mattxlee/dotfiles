@@ -242,7 +242,8 @@ endif
 " <leader>f: prompt for a pattern (regex), pick matches in fzf, load them
 "            into the quickfix list and open it.
 " <leader>l: same, using the word under the cursor as a fixed string.
-" Tab toggles selection, ctrl-a selects all, Enter accepts, Esc cancels.
+" Tab toggles selection, ctrl-a selects all, ctrl-d deselects all,
+" ctrl-t toggles all, Enter accepts, Esc cancels.
 function! s:FzfRg(query, ...) abort
     let l:query = a:query
     if empty(l:query)
@@ -258,7 +259,8 @@ function! s:FzfRg(query, ...) abort
     let l:flags = a:0 && a:1 ? '--fixed-strings' : ''
     let l:cmd = printf(
         \ 'rg --column --line-number --no-heading --color=never --smart-case %s -- %s'
-        \ . ' | fzf --multi --delimiter : --nth 4.. --prompt "Rg> "',
+        \ . ' | fzf --multi --delimiter : --nth 4.. --prompt "Rg> "'
+        \ . ' --bind "ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all"',
         \ l:flags, shellescape(l:query))
 
     let l:out = system(l:cmd)
