@@ -22,9 +22,6 @@ Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
 
-" tags
-Plug 'ludovicchabant/vim-gutentags'
-
 " copy/paste with system clipboard
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
@@ -207,36 +204,6 @@ endfunction
 nnoremap <C-g> :call <SID>OpenFugitiveStatus()<CR>
 nnoremap <C-h> :call <SID>CloseFugitiveStatus()<CR>
 " ---- end of Git related settings ----
-
-" ---- Define the way to find root dir for projects
-let the_root=['.root', '.svn', '.git', '.hg', '.project']
-" ---- end of define the way to find root dir for projects
-
-" ---- Vim tags settings ----
-" gutentags prepends the generated tag file to 'tags' automatically,
-" so don't override the default './tags,tags' here.
-let g:gutentags_project_root=the_root
-let g:gutentags_ctags_tagfile='.tags'
-let g:gutentags_modules=[]
-if executable('ctags')
-    let g:gutentags_modules+=['ctags']
-endif
-if executable('gtags-cscope') && executable('gtags')
-    let g:gutentags_modules+=['gtags_cscope']
-endif
-if executable('rg')
-    let g:gutentags_file_list_command='rg --files'
-endif
-let g:gutentags_cache_dir=expand('~/.cache/tags')
-let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args+=['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args+=['--c-kinds=+px']
-let g:gutentags_ctags_extra_args+=['--output-format=e-ctags']
-let g:gutentags_auto_add_gtags_cscope=0
-if !isdirectory(g:gutentags_cache_dir)
-    silent! call mkdir(g:gutentags_cache_dir, 'p')
-endif
-" ---- end of Vim tags settings ----
 
 " ---- Search with fzf + ripgrep ----
 " <leader>f: prompt for a pattern (regex), pick matches in fzf, load them

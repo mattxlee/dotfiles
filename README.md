@@ -5,7 +5,7 @@ Personal configuration files and setup scripts for my development environment. A
 ## Contents
 
 - **Shell** – `.zshrc` (Oh My Zsh) with autosuggestions and syntax highlighting plugins.
-- **Vim** – `init.vim` driven by vim-plug: git integration, tags, formatting and more.
+- **Vim** – `init.vim` driven by vim-plug: git integration, formatting and more.
 - **Tmux** – `.tmux.conf` with omarchy-style keybindings.
 - **Kitty** – terminal config with a themed color scheme (`kitty/`).
 - **Editor / tooling defaults** – `.clang-format`, `.clang-tidy`, `.editorconfig`, `.gitconfig`, `.gitignore_global`.
