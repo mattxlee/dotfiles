@@ -170,6 +170,22 @@ let g:NERDTreeIgnore=['\.git$', '\.DS_Store$', '__pycache__$']
 let g:NERDTreeHijackNetrw=1
 " close the tree when it is the last remaining window
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Put the tree back where it starts: far left, full height, initial width.
+" Needed after the layout changed (e.g. the tree became the only window or
+" ended up stacked instead of a left column).
+function! s:RestoreNerdTreeLayout() abort
+    for l:win in getwininfo()
+        if s:IsNerdTreeBuf(l:win.bufnr)
+            execute win_id2win(l:win.winid) . 'wincmd w'
+            if winnr('$') > 1
+                wincmd H
+                execute 'vertical resize ' . g:NERDTreeWinSize
+            endif
+            return
+        endif
+    endfor
+endfunction
+
 " <C-J> toggles the tree: close it if open, otherwise reveal the current file
 " in it, or just open it when no file is being edited.
 function! s:ToggleNerdTree() abort
@@ -178,6 +194,7 @@ function! s:ToggleNerdTree() abort
     else
         NERDTreeToggle
     endif
+    call s:RestoreNerdTreeLayout()
 endfunction
 nnoremap <C-J> :call <SID>ToggleNerdTree()<CR>
 
@@ -276,7 +293,30 @@ function! s:FzfFiles() abort
         \ }))
 endfunction
 
+function! s:IsNerdTreeBuf(bufnr) abort
+    return !empty(getbufvar(a:bufnr, 'NERDTree'))
+        \ || getbufvar(a:bufnr, '&filetype') ==# 'nerdtree'
+endfunction
+
+" Open the picked file without replacing NERDTree: when the tree is the
+" current window, go to another usable window, or split when there is none.
 function! s:OpenFile(file) abort
+    if s:IsNerdTreeBuf(bufnr('%'))
+        let l:target = 0
+        for l:win in getwininfo()
+            if l:win.bufnr != bufnr('%')
+                \ && getbufvar(l:win.bufnr, '&buftype') ==# ''
+                \ && !s:IsNerdTreeBuf(l:win.bufnr)
+                let l:target = l:win.winid
+                break
+            endif
+        endfor
+        if l:target != 0
+            call win_gotoid(l:target)
+        else
+            split
+        endif
+    endif
     execute 'edit ' . fnameescape(a:file)
 endfunction
 
