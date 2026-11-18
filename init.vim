@@ -22,6 +22,10 @@ Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
 
+" file explorer
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 " fuzzy finder
 " fzf#install() fetches a recent fzf into ~/.vim/plugged/fzf/bin, because
 " distro packages can be older than the plugin's minimum required version.
@@ -155,8 +159,45 @@ noremap <leader><leader> <C-W>w
 let g:netrw_banner=0
 noremap <leader>s :sp<CR>
 noremap <leader>v :vs<CR>
-noremap <C-J> :Expl<CR>
 " ---- end of File explorer shortcuts ----
+
+" ---- NERDTree ----
+let g:NERDTreeShowHidden=1
+let g:NERDTreeWinSize=35
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeIgnore=['\.git$', '\.DS_Store$', '__pycache__$']
+" open directory paths in NERDTree instead of netrw
+let g:NERDTreeHijackNetrw=1
+" close the tree when it is the last remaining window
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" <C-J> toggles the tree: close it if open, otherwise reveal the current file
+" in it, or just open it when no file is being edited.
+function! s:ToggleNerdTree() abort
+    if !empty(expand('%')) && &buftype ==# ''
+        NERDTreeFind
+    else
+        NERDTreeToggle
+    endif
+endfunction
+nnoremap <C-J> :call <SID>ToggleNerdTree()<CR>
+
+" show git status of each file in the tree (nerdtree-git-plugin)
+let g:NERDTreeGitStatusShowIgnored=0
+let g:NERDTreeGitStatusShowClean=0
+let g:NERDTreeGitStatusUseNerdFonts=0
+let g:NERDTreeGitStatusIndicatorMapCustom={
+    \ 'Modified': 'M',
+    \ 'Staged': 'S',
+    \ 'Untracked': 'U',
+    \ 'Renamed': 'R',
+    \ 'Unmerged': '!',
+    \ 'Deleted': 'D',
+    \ 'Unknown': '?',
+    \ 'Ignored': 'I',
+    \ 'Dirty': '*',
+    \ 'Clean': '-',
+    \ }
+" ---- end of NERDTree ----
 
 " ---- Quickfix settings ----
 noremap <leader>j :cnext<CR>
