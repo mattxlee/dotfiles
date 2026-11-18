@@ -37,3 +37,9 @@
 ; [http]
 ;      proxy = http://10.0.0.222:8080
 ;      sslVerify = false
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
